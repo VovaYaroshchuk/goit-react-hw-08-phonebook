@@ -1,4 +1,4 @@
-
+import PropTypes from 'prop-types';
 
 
 function ContactItem({contact,onDeleteContact}) {
@@ -12,6 +12,10 @@ function ContactItem({contact,onDeleteContact}) {
     )
 };
 
+ContactItem.propTypes = {
+    contact: PropTypes.object,
+    onDeleteContact: PropTypes.func,
+};
 
 
 export default ContactItem;

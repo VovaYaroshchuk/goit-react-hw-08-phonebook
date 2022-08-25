@@ -22,12 +22,7 @@ function PhoneBook () {
         window.localStorage.setItem('contacts', JSON.stringify(contacts));
     } , [contacts]);
 
-    useEffect(() => {
-        const contacts = JSON.parse(localStorage.getItem('contacts'));
-        if (contacts) {
-            setContacts(contacts);
-        }
-    } , []);
+
 
     const changeFilter = event => {
         setFilter(event.target.value);
