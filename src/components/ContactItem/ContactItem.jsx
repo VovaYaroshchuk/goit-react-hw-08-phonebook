@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 function ContactItem({contact,onDeleteContact}) {
     return (
         <>
-        <li key={contact.id} >
+        <li key={contact.name} >
                 <p>{contact.name}: {contact.number}</p>
-                <button onClick={()=>onDeleteContact(contact.id)}>Delete</button>
+                <button onClick={()=>onDeleteContact(contact.name)}>Delete</button>
                 </li>
         </>
     )

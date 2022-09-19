@@ -6,7 +6,7 @@ import styles from "./ContactList.module.css";
 const ContactList = ({ contacts,onDeleteContact }) => (
     <ul className={styles.list}>
         {contacts.map(contact => (
-            <ContactItem  key={contact.id} contact={contact} onDeleteContact={onDeleteContact}/>    
+            <ContactItem  key={contact.name} contact={contact} onDeleteContact={onDeleteContact}/>    
         ))}
     </ul>
 );
