@@ -1,12 +1,13 @@
 
 import { useState } from "react";
 import styles from './ContactForm.module.css';
-import { useDispatch } from "react-redux";
-import { addContact } from "redux/contacts/items";
+import { useDispatch, useSelector } from "react-redux";
+import { addContactOperation } from "redux/contacts/asyncOperations";
+import { selectStatus } from "redux/contacts/status";
 
 const INIT_STATE = {
     name: "",
-    number: "", //phone
+    phone: "",
 }
 
 export default function ContactForm () {
@@ -21,12 +22,28 @@ export default function ContactForm () {
 
     function onFormSubmit(event) {
         event.preventDefault();
-        dispatch(addContact(contact));
+        dispatch(addContactOperation(contact));
         setContact({ ...INIT_STATE });
     };
 
+    const reduxStatus = useSelector(selectStatus);
+
+    function isAdding() {
+        if (reduxStatus === "adding") {
+            return true;
+        }
+        return false;
+    }
+
+    function submitButtonTitle() {
+        if (reduxStatus === "adding") {
+            return "Adding...";
+        }
+        return "Add contact";
+    }
+
         return (
-            <form className={styles.form} onSubmit={onFormSubmit}>
+            <form action="submit" className={styles.form} onSubmit={onFormSubmit}>
                 <div>
                     Name:
                     <input className={styles.input}
@@ -47,12 +64,12 @@ export default function ContactForm () {
                         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                         required
                         pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-                        value={contact.number}
+                        value={contact.phone}
                         onChange={onInputChange}
                     />
                 </div>
                 <div>
-                    <button className={styles.btn} type="submit">Add</button>
+                    <button className={styles.btn} type="submit" disabled={isAdding()}>{ submitButtonTitle()}</button>
                 </div>
             </form>
         );
