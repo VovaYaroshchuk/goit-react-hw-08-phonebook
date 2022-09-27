@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkreact_homework_template=self.webpackChunkreact_homework_template||[]).push([[541],{1541:function(e,t,r){r.r(t),r.d(t,{default:function(){return n}});var a="HomePage_title__UFLA3",c=r(184);function n(){return(0,c.jsx)("h1",{className:a,children:"Welcome!"})}}}]);
+//# sourceMappingURL=541.21a3a36a.chunk.js.map
